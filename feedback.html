@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback Form</title>
+</head>
+<body>
+
+<h2>意見回饋表單</h2>
+
+<form action="#" method="post">
+
+    <p>
+        <label for="name">姓名：</label>
+        <input type="text" id="name" name="name" required>
+    </p>
+
+    <p>
+        <label for="email">電子郵件：</label>
+        <input type="email" id="email" name="email" required>
+    </p>
+
+    <p>
+        <label for="category">問題分類：</label>
+        <select id="category" name="category">
+            <option value="website">網站問題</option>
+            <option value="account">帳號問題</option>
+            <option value="service">服務諮詢</option>
+            <option value="other">其他</option>
+        </select>
+    </p>
+
+    <p>
+        <label for="message">問題描述：</label><br>
+        <textarea id="message" name="message" rows="5" cols="40" required></textarea>
+    </p>
+
+    <p>
+        <button type="submit">提交</button>
+        <button type="reset">重設</button>
+    </p>
+
+</form>
+
+</body>
+</html>
