@@ -1,1 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>學生課程與作業管理系統</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    section {
+      padding-top: 70px;
+      margin-bottom: 80px;
+    }
+
+    .overdue {
+      background-color: #f8d7da;
+    }
+
+    .due-soon {
+      background-color: #fff3cd;
+    }
+
+    .nav-link {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🔔 進入網站前的彈出對話框 -->
+<div class="modal fade" id="welcomeModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
+      <div class="modal-header">
+        <h5 class="modal-title">期末作業說明</h5>
+      </div>
+      <div class="modal-body">
+        <p class="fw-bold">
+          網頁設計<br>
+          商經二一期末作業<br>
+          <span class="text-primary">謝沅哲</span>
+        </p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
+          進入網站
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 導覽列 -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+  <div class="container">
+    <a class="navbar-brand">課程管理系統</a>
+    <div class="navbar-nav">
+      <a class="nav-link" onclick="showPage('home')">首頁</a>
+      <a class="nav-link" onclick="showPage('courses')">課程列表</a>
+      <a class="nav-link" onclick="showPage('assignments')">作業管理</a>
+      <a class="nav-link" onclick="showPage('course')">課程詳細</a>
+      <a class="nav-link" onclick="showPage('about')">關於本站</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- 首頁 -->
+  <section id="home">
+    <h2>📘 網站簡介</h2>
+    <p>
+      學生常因課程與作業資訊分散，導致難以掌握學習進度。
+      本系統提供集中式管理介面，讓學生能快速查看課程與作業狀態。
+    </p>
+
+    <h4 class="mt-4">📌 今日待辦事項</h4>
+    <ul id="todoList" class="list-group"></ul>
+  </section>
+
+  <!-- 課程列表 -->
+  <section id="courses" style="display:none">
+    <h2>📚 課程列表</h2>
+    <table class="table table-bordered mt-3">
+      <thead class="table-light">
+        <tr>
+          <th>課程名稱</th>
+          <th>授課老師</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>管理學</td><td>王老師</td></tr>
+        <tr><td>會計學</td><td>林老師</td></tr>
+        <tr><td>行銷管理</td><td>陳老師</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 作業管理 -->
+  <section id="assignments" style="display:none">
+    <h2>📝 作業管理</h2>
+    <ul class="list-group mt-3">
+      <li class="list-group-item due-soon">管理學期中報告（截止：2026/01/10）</li>
+      <li class="list-group-item overdue">會計作業一（截止：2026/01/05）</li>
+      <li class="list-group-item">行銷企劃書（截止：2026/01/20）</li>
+    </ul>
+  </section>
+
+  <!-- 課程詳細 -->
+  <section id="course" style="display:none">
+    <h2>📖 課程詳細資訊</h2>
+    <p><strong>課程名稱：</strong>管理學</p>
+    <p><strong>授課老師：</strong>王老師</p>
+    <h5>作業</h5>
+    <ul>
+      <li>期中報告</li>
+      <li>期末簡報</li>
+    </ul>
+    <h5>公告</h5>
+    <p>下週課程改為線上上課。</p>
+  </section>
+
+  <!-- 關於本站 -->
+  <section id="about" style="display:none">
+    <h2>ℹ️ 關於本站</h2>
+    <p>
+      本網站為學生課程與作業管理系統，
+      使用 HTML、CSS、JavaScript 與 Bootstrap 5 製作，
+      提供清楚且易操作的介面。
+    </p>
+  </section>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // 頁面切換
+  function showPage(pageId) {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById(pageId).style.display = "block";
+  }
+
+  // 待辦事項
+  const todos = ["完成管理學報告", "檢查會計作業", "準備行銷簡報"];
+  const todoList = document.getElementById("todoList");
+  todos.forEach(todo => {
+    const li = document.createElement("li");
+    li.className = "list-group-item";
+    li.textContent = todo;
+    todoList.appendChild(li);
+  });
+
+  // 頁面載入時顯示彈窗
+  window.onload = function () {
+    const modal = new bootstrap.Modal(document.getElementById('welcomeModal'));
+    modal.show();
+  };
+</script>
+
+</body>
+</html>
 
